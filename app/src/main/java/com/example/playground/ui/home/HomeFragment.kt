@@ -7,18 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.playground.R
+import com.example.playground.core_ui.CoreAdapter
 import com.example.playground.core_ui.TextViewAV
 import com.example.playground.core_ui.ViewGroupHolder
 import com.mikepenz.fastadapter.FastAdapter
-import com.mikepenz.fastadapter.adapters.ItemAdapter
 import kotlinx.android.synthetic.main.recycle_view.*
 
 class HomeFragment : Fragment() {
 
     private var viewList: ArrayList<View> = arrayListOf()
-
-    lateinit var itemAdapter: ItemAdapter<ViewGroupHolder>
-    lateinit var fastAdapter: FastAdapter<ViewGroupHolder>
+    private lateinit var adapter: FastAdapter<ViewGroupHolder>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,8 +28,7 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initListData()
-        initAdapterView()
-        initAdapterData()
+        initAdapter()
         renderRecyclerView()
     }
 
@@ -41,20 +38,13 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun initAdapterView() {
-        itemAdapter = ItemAdapter.items()
-        fastAdapter = FastAdapter.with(itemAdapter)
-    }
-
-    private fun initAdapterData() {
-        viewList.map {
-            itemAdapter.add(ViewGroupHolder().addView(it))
-        }
+    private fun initAdapter() {
+        adapter = CoreAdapter(viewList).adapter
     }
 
     private fun renderRecyclerView() {
         recyclew_view.layoutManager = LinearLayoutManager(requireContext())
-        recyclew_view.adapter = fastAdapter
+        recyclew_view.adapter = adapter
     }
 
     private fun addTextView1(i: Int): View {
