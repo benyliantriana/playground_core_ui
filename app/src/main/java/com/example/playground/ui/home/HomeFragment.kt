@@ -47,7 +47,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun initAdapterData() {
-        itemAdapter.add(ViewGroupHolder().addView(viewList))
+        viewList.map {
+            itemAdapter.add(ViewGroupHolder().addView(it))
+        }
     }
 
     private fun renderRecyclerView() {

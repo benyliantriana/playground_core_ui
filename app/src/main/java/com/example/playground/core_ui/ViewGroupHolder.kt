@@ -8,7 +8,7 @@ import com.mikepenz.fastadapter.items.AbstractItem
 
 open class ViewGroupHolder : AbstractItem<ViewGroupHolder, ViewGroupHolder.ViewHolder>() {
 
-    val linear: ArrayList<View> = arrayListOf()
+    private var itemView: View? = null
 
     override fun getType(): Int {
         return -1 // ini aku gk tau harus diisi apa
@@ -30,15 +30,13 @@ open class ViewGroupHolder : AbstractItem<ViewGroupHolder, ViewGroupHolder.ViewH
         }
 
         override fun bindView(item: ViewGroupHolder, payloads: MutableList<Any>) {
-            item.linear.map {
-                linearLayout.addView(it)
-            }
+            linearLayout.addView(item.itemView)
         }
 
     }
 
-    fun addView(view: List<View>): ViewGroupHolder {
-        this.linear.addAll(view)
+    fun addView(view: View): ViewGroupHolder {
+        this.itemView = view
         return this
     }
 
