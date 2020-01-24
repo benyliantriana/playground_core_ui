@@ -36,10 +36,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun initListData() {
-        viewList.add(addTextView1())
-        viewList.add(addTextView1())
-        viewList.add(addTextView1())
-        viewList.add(addTextView1())
+        for (i in 1..100) {
+            viewList.add(addTextView1(i))
+        }
     }
 
     private fun initAdapterView() {
@@ -56,9 +55,9 @@ class HomeFragment : Fragment() {
         recyclew_view.adapter = fastAdapter
     }
 
-    private fun addTextView1(): View {
+    private fun addTextView1(i: Int): View {
         return TextViewAV(requireContext()).apply {
-            textViewAV.text = "textView 1"
+            textViewAV.text = "textView $i"
             textViewAV.setTextColor(resources.getColor(R.color.colorWhite))
         }.getView()
     }
