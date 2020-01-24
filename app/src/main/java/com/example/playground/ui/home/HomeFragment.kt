@@ -9,14 +9,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.playground.R
 import com.example.playground.core_ui.CoreAdapter
 import com.example.playground.core_ui.TextViewAV
-import com.example.playground.core_ui.ViewGroupHolder
-import com.mikepenz.fastadapter.FastAdapter
 import kotlinx.android.synthetic.main.recycle_view.*
 
 class HomeFragment : Fragment() {
 
     private var viewList: ArrayList<View> = arrayListOf()
-    private lateinit var adapter: FastAdapter<ViewGroupHolder>
+    private lateinit var adapter: CoreAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +37,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        adapter = CoreAdapter(viewList).adapter
+        adapter = CoreAdapter(viewList)
     }
 
     private fun renderRecyclerView() {
@@ -53,5 +51,4 @@ class HomeFragment : Fragment() {
             textViewAV.setTextColor(resources.getColor(R.color.colorWhite))
         }.getView()
     }
-
 }

@@ -9,12 +9,11 @@ internal class CoreAdapter(
 ) : FastAdapter<ViewGroupHolder>() {
 
     private var itemAdapter: ItemAdapter<ViewGroupHolder> = ItemAdapter.items()
-    var adapter: FastAdapter<ViewGroupHolder>
 
     init {
         data.map {
             itemAdapter.add(ViewGroupHolder().addView(it))
         }
-        adapter = with(itemAdapter)
+        addAdapter(0, itemAdapter)
     }
 }

@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.playground.R
 
+
 class TextViewAV(context: Context) : View(context) {
 
     private var color: Int = context.resources.getColor(R.color.colorAccent)
@@ -16,7 +17,5 @@ class TextViewAV(context: Context) : View(context) {
         setTextColor(color)
     }
 
-    fun getView() : View {
-        return textViewAV.rootView
-    }
+    fun getView() : View = textViewAV
 }
