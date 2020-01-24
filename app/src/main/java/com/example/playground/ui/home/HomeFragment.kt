@@ -5,13 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.playground.R
 import com.example.playground.core_ui.TextViewAV
+import com.example.playground.core_ui.ViewGroupHolder
+import com.mikepenz.fastadapter.FastAdapter
+import com.mikepenz.fastadapter.adapters.ItemAdapter
 import kotlinx.android.synthetic.main.recycle_view.*
 
 class HomeFragment : Fragment() {
 
     private var viewList: ArrayList<View> = arrayListOf()
+
+    lateinit var itemAdapter: ItemAdapter<ViewGroupHolder>
+    lateinit var fastAdapter: FastAdapter<ViewGroupHolder>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,45 +29,38 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        addTextView1()
-        addTextView2()
-        addTextView3()
-        addTextView4()
-        renderView()
+        initListData()
+        initAdapterView()
+        initAdapterData()
+        renderRecyclerView()
     }
 
-    private fun addTextView1() {
-        viewList.add(TextViewAV(requireContext()).apply {
+    private fun initListData() {
+        viewList.add(addTextView1())
+        viewList.add(addTextView1())
+        viewList.add(addTextView1())
+        viewList.add(addTextView1())
+    }
+
+    private fun initAdapterView() {
+        itemAdapter = ItemAdapter.items()
+        fastAdapter = FastAdapter.with(itemAdapter)
+    }
+
+    private fun initAdapterData() {
+        itemAdapter.add(ViewGroupHolder().addView(viewList))
+    }
+
+    private fun renderRecyclerView() {
+        recyclew_view.layoutManager = LinearLayoutManager(requireContext())
+        recyclew_view.adapter = fastAdapter
+    }
+
+    private fun addTextView1(): View {
+        return TextViewAV(requireContext()).apply {
             textViewAV.text = "textView 1"
             textViewAV.setTextColor(resources.getColor(R.color.colorWhite))
-        }.getView())
-    }
-
-    private fun addTextView2() {
-        viewList.add(TextViewAV(requireContext()).apply {
-            textViewAV.text = "textView 2"
-            textViewAV.setTextColor(resources.getColor(R.color.colorWhite))
-        }.getView())
-    }
-
-    private fun addTextView3() {
-        viewList.add(TextViewAV(requireContext()).apply {
-            textViewAV.text = "textView 3"
-            textViewAV.setTextColor(resources.getColor(R.color.colorWhite))
-        }.getView())
-    }
-
-    private fun addTextView4() {
-        viewList.add(TextViewAV(requireContext()).apply {
-            textViewAV.text = "textView 4"
-            textViewAV.setTextColor(resources.getColor(R.color.colorWhite))
-        }.getView())
-    }
-
-    private fun renderView() {
-        viewList.map {
-            linear_layout.addView(it)
-        }
+        }.getView()
     }
 
 }
