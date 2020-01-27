@@ -5,14 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.playground.R
 import com.example.playground.core_ui.CoreAdapter
 import kotlinx.android.synthetic.main.recycle_view.*
 
 open class CoreFragment : Fragment() {
     var viewList: ArrayList<View> = arrayListOf()
-    private lateinit var adapter: CoreAdapter
+    private lateinit var mAdapter: CoreAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,18 +31,20 @@ open class CoreFragment : Fragment() {
     open fun renderView() {}
 
     private fun setAdapter() {
-        adapter = CoreAdapter(viewList)
+        mAdapter = CoreAdapter(viewList)
     }
 
     private fun renderRecyclerView() {
-        recyclew_view.layoutManager = LinearLayoutManager(requireContext())
-        recyclew_view.adapter = adapter
+        recyclew_view?.apply {
+            layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
+            itemAnimator = null
+            adapter = mAdapter
+        }
     }
 
     fun updateView() {
         clearDataViewList()
         renderView()
-        setAdapter()
         updateAdapter()
     }
 
@@ -51,7 +53,9 @@ open class CoreFragment : Fragment() {
     }
 
     private fun updateAdapter() {
-        adapter.notifyDataSetChanged()
+        mAdapter.apply {
+            setNewData(viewList)
+        }
     }
 
 }
