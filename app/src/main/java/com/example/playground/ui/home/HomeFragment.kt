@@ -1,54 +1,30 @@
 package com.example.playground.ui.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.core.content.ContextCompat.getColor
 import com.example.playground.R
-import com.example.playground.core_ui.CoreAdapter
+import com.example.playground.core.CoreFragment
 import com.example.playground.core_ui.TextViewAV
-import kotlinx.android.synthetic.main.recycle_view.*
 
-class HomeFragment : Fragment() {
-
-    private var viewList: ArrayList<View> = arrayListOf()
-    private lateinit var adapter: CoreAdapter
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.recycle_view, container, false)
-    }
+class HomeFragment : CoreFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        initListData()
-        initAdapter()
-        renderRecyclerView()
+        renderView()
     }
 
-    private fun initListData() {
+    override fun renderView() {
         for (i in 1..100) {
             viewList.add(addTextView1(i))
         }
     }
 
-    private fun initAdapter() {
-        adapter = CoreAdapter(viewList)
-    }
-
-    private fun renderRecyclerView() {
-        recyclew_view.layoutManager = LinearLayoutManager(requireContext())
-        recyclew_view.adapter = adapter
-    }
-
     private fun addTextView1(i: Int): View {
         return TextViewAV(requireContext()).apply {
+            textViewAV.id = i
             textViewAV.text = "textView $i"
-            textViewAV.setTextColor(resources.getColor(R.color.colorWhite))
+            textViewAV.setTextColor(getColor(context, R.color.colorWhite))
         }.getView()
     }
 }

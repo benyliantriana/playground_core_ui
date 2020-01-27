@@ -1,10 +1,11 @@
-package com.example.playground
+package com.example.playground.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
+import com.example.playground.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -17,7 +18,9 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        navController = Navigation.findNavController(this,
+            R.id.nav_host_fragment
+        )
 
         NavigationUI.setupActionBarWithNavController(this, navController)
     }
