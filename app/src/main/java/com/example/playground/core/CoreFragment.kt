@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.playground.R
-import com.example.playground.core_ui.CoreAdapter
 import kotlinx.android.synthetic.main.recycle_view.*
 
 open class CoreFragment : Fragment() {
@@ -23,6 +22,7 @@ open class CoreFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        initDataViewList()
         renderView()
         setAdapter()
         renderRecyclerView()
@@ -43,12 +43,12 @@ open class CoreFragment : Fragment() {
     }
 
     fun updateView() {
-        clearDataViewList()
+        initDataViewList()
         renderView()
         updateAdapter()
     }
 
-    private fun clearDataViewList() {
+    private fun initDataViewList() {
         viewList.clear()
     }
 

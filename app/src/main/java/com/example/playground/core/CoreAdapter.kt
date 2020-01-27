@@ -1,6 +1,7 @@
-package com.example.playground.core_ui
+package com.example.playground.core
 
 import android.view.View
+import com.example.playground.core_ui.holder.ViewGroupHolder
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
 

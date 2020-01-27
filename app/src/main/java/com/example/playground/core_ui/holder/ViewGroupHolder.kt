@@ -1,4 +1,4 @@
-package com.example.playground.core_ui
+package com.example.playground.core_ui.holder
 
 import android.view.View
 import android.widget.LinearLayout
@@ -14,7 +14,8 @@ open class ViewGroupHolder : AbstractItem<ViewGroupHolder, ViewGroupHolder.ViewH
         return -1 // ini aku gk tau harus diisi apa
     }
 
-    override fun getViewHolder(v: View): ViewHolder = ViewHolder(v)
+    override fun getViewHolder(v: View): ViewHolder =
+        ViewHolder(v)
 
     override fun getLayoutRes(): Int {
         return R.layout.view_group

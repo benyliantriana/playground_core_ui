@@ -1,4 +1,4 @@
-package com.example.playground.core_ui
+package com.example.playground.core_ui.atom
 
 import android.content.Context
 import android.view.Gravity
@@ -7,7 +7,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.example.playground.R
 
 
-class TextViewAV(context: Context) : View(context) {
+class TextViewAV(context: Context) : AppCompatTextView(context) {
 
     private var color: Int = context.resources.getColor(R.color.colorAccent)
 

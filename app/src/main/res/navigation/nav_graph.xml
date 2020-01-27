@@ -8,5 +8,14 @@
         android:id="@+id/homeFragment"
         android:name="com.example.playground.ui.home.HomeFragment"
         android:label="home">
+        <action
+            android:id="@+id/goToListText"
+            app:destination="@id/listTextFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/listTextFragment"
+        android:name="com.example.playground.ui.textlist.TextListFragment"
+        android:label="ListText">
     </fragment>
 </navigation>
