@@ -1,6 +1,5 @@
 package com.example.playground.ui.home
 
-import android.os.Bundle
 import android.view.View
 import androidx.navigation.Navigation
 import com.example.playground.core.CoreFragment
@@ -8,12 +7,6 @@ import com.example.playground.core_ui.atom.ButtonAV
 import com.example.playground.core_ui.atom.DividerAV
 
 class HomeFragment : CoreFragment() {
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        renderView()
-    }
-
     override fun renderView() {
         viewList.addAll(
             listOf(
