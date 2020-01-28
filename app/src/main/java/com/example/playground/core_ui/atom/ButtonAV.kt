@@ -11,13 +11,21 @@ class ButtonAV(context: Context) : AppCompatButton(context) {
     private var defaultTextColor: Int = context.resources.getColor(R.color.colorWhite)
     private var buttonColor: Int = context.resources.getColor(R.color.colorAccent)
 
-    val buttonAV = AppCompatButton(context).apply {
-        text = "button"
-        setBackgroundColor(buttonColor)
+    var text: String? = null
+    private val textInput
+        get() = text
+
+    lateinit var onClick: () -> Unit?
+
+    private val buttonAV = AppCompatButton(context).apply {
         textSize = 14f
         gravity = Gravity.CENTER_HORIZONTAL
+        setBackgroundColor(buttonColor)
         setTextColor(defaultTextColor)
     }
 
-    fun getView(): View = buttonAV
+    fun getView(): View = buttonAV.apply {
+        text = textInput
+        setOnClickListener { onClick() }
+    }
 }

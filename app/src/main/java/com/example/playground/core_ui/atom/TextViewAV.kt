@@ -9,13 +9,26 @@ import com.example.playground.R
 
 class TextViewAV(context: Context) : AppCompatTextView(context) {
 
-    private var color: Int = context.resources.getColor(R.color.colorAccent)
+    var text: String? = null
 
-    val textViewAV = AppCompatTextView(context).apply {
+    var id: Int? = R.id.av_textview
+    private val textId
+        get() = id ?: R.id.av_textview
+
+    private val textInput
+        get() = text
+
+    private var color: Int = context.resources.getColor(R.color.colorWhite)
+
+    private val textViewAV = AppCompatTextView(context).apply {
+        id = id
         textSize = 14f
         gravity = Gravity.CENTER_HORIZONTAL
         setTextColor(color)
     }
 
-    fun getView() : View = textViewAV
+    fun getView(): View = textViewAV.apply {
+        id = textId
+        text = textInput
+    }
 }

@@ -1,0 +1,4 @@
+<resources>
+    <item name="av_textview" type="id" />
+    <item name="mv_menuaccount" type="id" />
+</resources>

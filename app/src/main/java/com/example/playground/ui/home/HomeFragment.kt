@@ -33,8 +33,8 @@ class HomeFragment : CoreFragment() {
         action: () -> Unit
     ): View {
         return ButtonAV(requireContext()).apply {
-            buttonAV.text = label
-            buttonAV.setOnClickListener { action() }
+            text = label
+            onClick = { action() }
         }.getView()
     }
 
