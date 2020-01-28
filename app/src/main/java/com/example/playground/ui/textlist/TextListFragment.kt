@@ -22,9 +22,9 @@ class TextListFragment : CoreFragment() {
 
     private fun addTextView1(i: Int): View {
         return TextViewAV(requireContext()).apply {
-            textViewAV.id = i
-            textViewAV.text = "textView $i"
-            textViewAV.setTextColor(getColor(context, R.color.colorWhite))
-        }.getView()
+            id = i
+            text = "textView $i"
+            setTextColor(getColor(context, R.color.colorWhite))
+        }
     }
 }

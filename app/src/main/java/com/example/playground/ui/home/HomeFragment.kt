@@ -33,13 +33,13 @@ class HomeFragment : CoreFragment() {
         action: () -> Unit
     ): View {
         return ButtonAV(requireContext()).apply {
-            buttonAV.text = label
-            buttonAV.setOnClickListener { action() }
-        }.getView()
+            text = label
+            setOnClickListener { action() }
+        }
     }
 
     private fun dividerView(): View {
-        return DividerAV(requireContext()).getView()
+        return DividerAV(requireContext())
     }
 
     private fun goToListText() {

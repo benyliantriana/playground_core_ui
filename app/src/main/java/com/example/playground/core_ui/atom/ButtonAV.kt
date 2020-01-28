@@ -4,14 +4,15 @@ import android.content.Context
 import android.view.Gravity
 import android.view.View
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.ContextCompat
 import com.example.playground.R
 
 class ButtonAV(context: Context) : AppCompatButton(context) {
 
-    private var defaultTextColor: Int = context.resources.getColor(R.color.colorWhite)
-    private var buttonColor: Int = context.resources.getColor(R.color.colorAccent)
+    private var defaultTextColor: Int = ContextCompat.getColor(context, R.color.colorWhite)
+    private var buttonColor: Int = ContextCompat.getColor(context, R.color.colorAccent)
 
-    val buttonAV = AppCompatButton(context).apply {
+    init {
         text = "button"
         setBackgroundColor(buttonColor)
         textSize = 14f
@@ -19,5 +20,4 @@ class ButtonAV(context: Context) : AppCompatButton(context) {
         setTextColor(defaultTextColor)
     }
 
-    fun getView(): View = buttonAV
 }
