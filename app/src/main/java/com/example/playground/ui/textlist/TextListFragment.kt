@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import com.example.playground.R
 import com.example.playground.core.CoreFragment
 import com.example.playground.core_ui.atom.TextViewAV
+import com.example.playground.core_ui.molecule.MenuAccountMV
 
 class TextListFragment : CoreFragment() {
 
@@ -21,10 +22,8 @@ class TextListFragment : CoreFragment() {
     }
 
     private fun addTextView1(i: Int): View {
-        return TextViewAV(requireContext()).apply {
-            id = i
-            text = "textView $i"
-            setTextColor(ContextCompat.getColor(context, R.color.colorWhite))
-        }
+        return MenuAccountMV(requireContext()).apply {
+            textLabel = "textView $i"
+        }.getView()
     }
 }

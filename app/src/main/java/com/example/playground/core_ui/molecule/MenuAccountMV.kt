@@ -13,9 +13,9 @@ class MenuAccountMV(context: Context) : ConstrainMV(context) {
     private val constrainLayout = getConstraint()
 
     private val TVLabel = TextViewAV(context).apply {
-        id = R.id.av_textview
+        id = R.id.mv_menuaccount_textlabel
         text = textLabel
-    }
+    }.rootView
 
     private val TVData = TextViewAV(context).apply {
         text = textData
@@ -28,13 +28,14 @@ class MenuAccountMV(context: Context) : ConstrainMV(context) {
     private fun createComponent() {
 
         constrainLayout.id = R.id.mv_menuaccount
-        constrainLayout.addView(TVLabel)
-        constrainLayout.addView(TVData)
+        TVLabel.id = R.id.mv_menuaccount_textlabel
 
-        ConstraintSet().apply {
-            clone(constrainLayout)
-//            it.connect(TVLabel.getTextViewId(), ConstraintSet.START, TVLabel.getTextViewId(), ConstraintSet.TOP)
-            applyTo(constrainLayout)
+        constrainLayout.addView(TVLabel)
+
+        ConstraintSet().also {
+            it.clone(constrainLayout)
+            it.connect(TVLabel.getId(), ConstraintSet.START, constrainLayout.id, ConstraintSet.START)
+            it.applyTo(constrainLayout)
         }
     }
 

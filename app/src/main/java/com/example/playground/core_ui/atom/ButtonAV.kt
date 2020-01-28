@@ -16,6 +16,7 @@ class ButtonAV(context: Context) : AppCompatButton(context) {
     lateinit var onClick: () -> Unit?
 
     init {
+        id = R.id.av_button
         textSize = 14f
         gravity = Gravity.CENTER_HORIZONTAL
         setBackgroundColor(buttonColor)
