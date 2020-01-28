@@ -2,12 +2,11 @@ package com.example.playground.core_ui.atom
 
 import android.content.Context
 import android.view.View
+import com.example.playground.utils.dp
 
 class DividerAV(context: Context) : View(context) {
 
-    private val dividerView = View(context).apply {
-        minimumHeight = 20
+    init {
+        minimumHeight = 4.dp()
     }
-
-    fun getView(): View = dividerView
 }

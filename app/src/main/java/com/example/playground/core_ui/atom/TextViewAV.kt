@@ -4,31 +4,25 @@ import android.content.Context
 import android.view.Gravity
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.ContextCompat
 import com.example.playground.R
+import com.example.playground.utils.sp
 
 
 class TextViewAV(context: Context) : AppCompatTextView(context) {
 
-    var text: String? = null
+    private var color: Int = ContextCompat.getColor(context, R.color.colorAccent)
+
 
     var id: Int? = R.id.av_textview
     private val textId
         get() = id ?: R.id.av_textview
 
-    private val textInput
-        get() = text
-
-    private var color: Int = context.resources.getColor(R.color.colorWhite)
-
-    private val textViewAV = AppCompatTextView(context).apply {
+    init {
         id = id
         textSize = 14f
         gravity = Gravity.CENTER_HORIZONTAL
         setTextColor(color)
     }
 
-    fun getView(): View = textViewAV.apply {
-        id = textId
-        text = textInput
-    }
 }

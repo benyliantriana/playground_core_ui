@@ -35,11 +35,11 @@ class HomeFragment : CoreFragment() {
         return ButtonAV(requireContext()).apply {
             text = label
             onClick = { action() }
-        }.getView()
+        }
     }
 
     private fun dividerView(): View {
-        return DividerAV(requireContext()).getView()
+        return DividerAV(requireContext())
     }
 
     private fun goToListText() {
