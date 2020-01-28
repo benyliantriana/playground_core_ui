@@ -1,6 +1,5 @@
 package com.example.playground.ui.home
 
-import android.os.Bundle
 import android.view.View
 import androidx.navigation.Navigation
 import com.example.playground.core.CoreFragment
@@ -9,21 +8,13 @@ import com.example.playground.core_ui.atom.DividerAV
 
 class HomeFragment : CoreFragment() {
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        renderView()
-    }
-
     override fun renderView() {
         viewList.addAll(
             listOf(
-                addButton(
-                    label = "List Text 1",
-                    action = { goToListText() }),
+                addButton("List Text 1", action = { goToListText() }),
                 dividerView(),
-                addButton(
-                    label = "Menu",
-                    action = { goToListText() })
+                addButton("Menu", action = { addView() }),
+                dividerView()
             )
         )
     }
@@ -47,5 +38,15 @@ class HomeFragment : CoreFragment() {
             val goToListText = HomeFragmentDirections.goToListText()
             Navigation.findNavController(it).navigate(goToListText)
         }
+    }
+
+    private fun addView() {
+        viewList.addAll(
+            listOf(
+                addButton("List Text 100", action = { goToListText() }),
+                dividerView()
+            )
+        )
+        updateView()
     }
 }
