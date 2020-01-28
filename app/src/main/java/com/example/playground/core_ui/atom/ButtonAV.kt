@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import com.example.playground.R
+import com.example.playground.utils.sp
 
 class ButtonAV(context: Context) : AppCompatButton(context) {
 
@@ -15,7 +16,7 @@ class ButtonAV(context: Context) : AppCompatButton(context) {
     init {
         text = "button"
         setBackgroundColor(buttonColor)
-        textSize = 14f
+        textSize = 14f.sp()
         gravity = Gravity.CENTER_HORIZONTAL
         setTextColor(defaultTextColor)
     }
