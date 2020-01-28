@@ -13,12 +13,14 @@ class ButtonAV(context: Context) : AppCompatButton(context) {
     private var defaultTextColor: Int = ContextCompat.getColor(context, R.color.colorWhite)
     private var buttonColor: Int = ContextCompat.getColor(context, R.color.colorAccent)
 
+    lateinit var onClick: () -> Unit?
+
     init {
-        text = "button"
-        setBackgroundColor(buttonColor)
-        textSize = 14f.sp()
+        textSize = 14f
         gravity = Gravity.CENTER_HORIZONTAL
+        setBackgroundColor(buttonColor)
         setTextColor(defaultTextColor)
+        setOnClickListener { onClick() }
     }
 
 }

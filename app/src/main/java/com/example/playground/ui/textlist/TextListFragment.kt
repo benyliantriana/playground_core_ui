@@ -2,7 +2,7 @@ package com.example.playground.ui.textlist
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat.getColor
+import androidx.core.content.ContextCompat
 import com.example.playground.R
 import com.example.playground.core.CoreFragment
 import com.example.playground.core_ui.atom.TextViewAV
@@ -24,7 +24,7 @@ class TextListFragment : CoreFragment() {
         return TextViewAV(requireContext()).apply {
             id = i
             text = "textView $i"
-            setTextColor(getColor(context, R.color.colorWhite))
+            setTextColor(ContextCompat.getColor(context, R.color.colorWhite))
         }
     }
 }

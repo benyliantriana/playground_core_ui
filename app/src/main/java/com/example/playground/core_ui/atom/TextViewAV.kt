@@ -13,8 +13,14 @@ class TextViewAV(context: Context) : AppCompatTextView(context) {
 
     private var color: Int = ContextCompat.getColor(context, R.color.colorAccent)
 
+
+    var id: Int? = R.id.av_textview
+    private val textId
+        get() = id ?: R.id.av_textview
+
     init {
-        textSize = 14f.sp()
+        id = id
+        textSize = 14f
         gravity = Gravity.CENTER_HORIZONTAL
         setTextColor(color)
     }
