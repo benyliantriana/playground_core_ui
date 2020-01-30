@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.playground.R
+import com.example.playground.core_ui.atom.Atom
+import com.example.playground.core_ui.atom.TextViewAV
 import kotlinx.android.synthetic.main.recycle_view.*
 
 open class CoreFragment : Fragment() {
-    var viewList: ArrayList<View> = arrayListOf()
+    var viewList: ArrayList<Any> = arrayListOf()
     private lateinit var mAdapter: CoreAdapter
 
     override fun onCreateView(
@@ -31,7 +33,7 @@ open class CoreFragment : Fragment() {
     open fun renderView() {}
 
     private fun setAdapter() {
-        mAdapter = CoreAdapter(viewList)
+        mAdapter = CoreAdapter(viewList, TextViewAV(requireContext()))
     }
 
     private fun renderRecyclerView() {

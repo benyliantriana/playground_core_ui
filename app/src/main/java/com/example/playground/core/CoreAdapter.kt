@@ -1,26 +1,29 @@
 package com.example.playground.core
 
-import android.view.View
+import com.example.playground.core_ui.atom.Atom
 import com.example.playground.core_ui.holder.ViewGroupHolder
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
 
 internal class CoreAdapter(
-    data: ArrayList<View>
+    data: ArrayList<Any>,
+    val atom: Atom
 ) : FastAdapter<ViewGroupHolder>() {
 
     var itemAdapter: ItemAdapter<ViewGroupHolder> = ItemAdapter.items()
 
     init {
+
         data.map {
-            itemAdapter.add(ViewGroupHolder().addView(it))
+            itemAdapter.add(ViewGroupHolder(atom))
         }
+
         addAdapter(0, itemAdapter)
     }
 
-    fun setNewData(data: ArrayList<View>) {
+    fun setNewData(data: ArrayList<Any>) {
         data.mapIndexed { index, view ->
-            itemAdapter.set(index, ViewGroupHolder().addView(view))
+            itemAdapter.set(index, ViewGroupHolder(atom))
         }
     }
 }

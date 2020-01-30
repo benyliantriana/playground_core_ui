@@ -9,7 +9,9 @@ import com.example.playground.core_ui.atom.DividerAV
 class HomeFragment : CoreFragment() {
     override fun renderView() {
         viewList.addAll(
-            listOf(
+            listOf("sample data", "sample data 1")
+
+           /* listOf(
                 addButton(
                     label = "List Text 1",
                     action = { goToListText() }),
@@ -17,7 +19,7 @@ class HomeFragment : CoreFragment() {
                 addButton(
                     label = "Menu",
                     action = { goToListText() })
-            )
+            )*/
         )
     }
 

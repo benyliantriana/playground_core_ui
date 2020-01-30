@@ -1,37 +1,40 @@
 package com.example.playground.core_ui.holder
 
 import android.view.View
-import android.widget.LinearLayout
 import com.example.playground.R
+import com.example.playground.core_ui.atom.Atom
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.items.AbstractItem
 
-open class ViewGroupHolder : AbstractItem<ViewGroupHolder, ViewGroupHolder.ViewHolder>() {
+open class ViewGroupHolder(val atom: Atom) : AbstractItem<ViewGroupHolder, ViewGroupHolder.ViewHolder>() {
 
     private var itemView: View? = null
+
+    private var data: Any? = null
 
     override fun getType(): Int {
         return -1 // ini aku gk tau harus diisi apa
     }
 
-    override fun getViewHolder(v: View): ViewHolder =
-        ViewHolder(v)
+    override fun getViewHolder(v: View): ViewHolder {
+        return ViewHolder(atom.getView())
+    }
 
     override fun getLayoutRes(): Int {
         return R.layout.view_group
     }
 
-    class ViewHolder(view: View) : FastAdapter.ViewHolder<ViewGroupHolder>(view) {
-        private val linearLayout by lazy {
-            view.findViewById<LinearLayout>(R.id.linear_layout)
-        }
+    inner class ViewHolder(view: View) : FastAdapter.ViewHolder<ViewGroupHolder>(view) {
 
         override fun unbindView(item: ViewGroupHolder) {
-            linearLayout.removeAllViews()
+           atom.unBind()
         }
 
         override fun bindView(item: ViewGroupHolder, payloads: MutableList<Any>) {
-            linearLayout.addView(item.itemView)
+            //linearLayout.addView(item.itemView)
+            data?.let {
+                atom.render(it)
+            }
         }
 
     }

@@ -15,10 +15,10 @@ class TextListFragment : CoreFragment() {
     }
 
     private fun addTextView1(i: Int): View {
-        return TextViewAV(requireContext()).apply {
+        return TextViewAV(requireContext()).getView()/*.apply {
             id = i
             text = "textView $i"
             setTextColor(ContextCompat.getColor(context, R.color.colorWhite))
-        }
+        }*/
     }
 }
