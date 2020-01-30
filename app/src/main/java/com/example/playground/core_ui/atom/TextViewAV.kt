@@ -12,11 +12,14 @@ import com.example.playground.utils.sp
 class TextViewAV(context: Context) : Atom() {
 
     private var color: Int = ContextCompat.getColor(context, R.color.colorAccent)
-    private val textViewAV = AppCompatTextView(context).apply {
-        id = id
-        textSize = 14f
-        gravity = Gravity.CENTER_HORIZONTAL
-        setTextColor(color)
+    private var textViewAV: AppCompatTextView
+    init {
+      textViewAV =  AppCompatTextView(context).apply {
+            id = id
+            textSize = 14f
+            gravity = Gravity.CENTER_HORIZONTAL
+            setTextColor(color)
+        }
     }
 
     var id: Int? = R.id.av_textview

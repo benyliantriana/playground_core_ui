@@ -33,7 +33,7 @@ open class CoreFragment : Fragment() {
     open fun renderView() {}
 
     private fun setAdapter() {
-        mAdapter = CoreAdapter(viewList, TextViewAV(requireContext()))
+        mAdapter = CoreAdapter(viewList)
     }
 
     private fun renderRecyclerView() {
