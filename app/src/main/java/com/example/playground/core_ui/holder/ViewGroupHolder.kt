@@ -3,9 +3,11 @@ package com.example.playground.core_ui.holder
 import android.view.View
 import com.example.playground.R
 import com.example.playground.core_ui.atom.Atom
-import com.example.playground.core_ui.atom.TextViewAV
+import com.example.playground.core_ui.atom.ButtonAV
+import com.example.playground.utils.AtomicHelper
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.items.AbstractItem
+
 
 open class ViewGroupHolder<T : Atom> : AbstractItem<ViewGroupHolder<T>, ViewGroupHolder<T>.ViewHolder<T>>() {
 
@@ -23,8 +25,8 @@ open class ViewGroupHolder<T : Atom> : AbstractItem<ViewGroupHolder<T>, ViewGrou
     }
 
     override fun getViewHolder(v: View): ViewHolder<T> {
-        // ini harus nya instance dari class T biar dynamic
-        atom = TextViewAV(v.context)
+        // belum ketemu cara instance object dari generic type
+        atom = AtomicHelper.generateInstanceAtom(T::class.java, v.context)
         return ViewHolder(atom.getView())
     }
 

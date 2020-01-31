@@ -2,12 +2,16 @@ package com.example.playground.ui.home
 
 import android.view.View
 import androidx.navigation.Navigation
+import com.example.playground.core.CoreAdapter
 import com.example.playground.core.CoreFragment
 import com.example.playground.core_ui.atom.ButtonAV
 import com.example.playground.core_ui.atom.DividerAV
+import com.example.playground.core_ui.atom.TextViewAV
+import com.example.playground.core_ui.holder.ViewGroupHolder
 
 class HomeFragment : CoreFragment() {
     override fun renderView() {
+
         viewList.addAll(
             listOf("sample data", "sample data 1")
 
@@ -21,20 +25,8 @@ class HomeFragment : CoreFragment() {
                     action = { goToListText() })
             )*/
         )
-    }
+       mAdapter.setData()
 
-    private fun addButton(
-        label: String,
-        action: () -> Unit
-    ): View {
-        return ButtonAV(requireContext()).apply {
-            text = label
-            onClick = { action() }
-        }
-    }
-
-    private fun dividerView(): View {
-        return DividerAV(requireContext())
     }
 
     private fun goToListText() {

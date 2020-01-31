@@ -1,28 +1,27 @@
 package com.example.playground.core
 
-import com.example.playground.core_ui.atom.TextViewAV
+import com.example.playground.core_ui.atom.Atom
 import com.example.playground.core_ui.holder.ViewGroupHolder
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
 
-internal class CoreAdapter(
-    data: ArrayList<Any>
-) : FastAdapter<ViewGroupHolder<TextViewAV>>() {
+class CoreAdapter<T: Atom>(
+    var data: ArrayList<Any>
+) : FastAdapter<ViewGroupHolder<T>>() {
 
-    var itemAdapter: ItemAdapter<ViewGroupHolder<TextViewAV>> = ItemAdapter.items()
 
-    init {
-
-        data.map {
-            itemAdapter.add(ViewGroupHolder<TextViewAV>().withData(it))
+    fun setData() {
+        val itemAdapter: ItemAdapter<ViewGroupHolder<T>> = ItemAdapter.items()
+        data.map{
+            itemAdapter.add(ViewGroupHolder<T>().withData(it)) //.add(ViewGroupHolder<T>().withData(it))
         }
-
-        addAdapter(0, itemAdapter)
+        addAdapter( 0, itemAdapter)
     }
 
-    fun setNewData(data: ArrayList<Any>) {
+
+   /* fun setNewData(data: ArrayList<Any>) {
         data.mapIndexed { index, view ->
             itemAdapter.set(index, ViewGroupHolder())
         }
-    }
+    }*/
 }

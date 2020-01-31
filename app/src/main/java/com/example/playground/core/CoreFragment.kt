@@ -8,12 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.playground.R
 import com.example.playground.core_ui.atom.Atom
+import com.example.playground.core_ui.atom.ButtonAV
 import com.example.playground.core_ui.atom.TextViewAV
 import kotlinx.android.synthetic.main.recycle_view.*
 
 open class CoreFragment : Fragment() {
     var viewList: ArrayList<Any> = arrayListOf()
-    private lateinit var mAdapter: CoreAdapter
+     lateinit var mAdapter: CoreAdapter<Atom>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,14 +26,14 @@ open class CoreFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initDataViewList()
-        renderView()
         setAdapter()
+        renderView()
         renderRecyclerView()
     }
 
-    open fun renderView() {}
+    open fun renderView(){}
 
-    private fun setAdapter() {
+    open fun setAdapter() {
         mAdapter = CoreAdapter(viewList)
     }
 
@@ -56,7 +57,7 @@ open class CoreFragment : Fragment() {
 
     private fun updateAdapter() {
         mAdapter.apply {
-            setNewData(viewList)
+            //setNewData(viewList)
         }
     }
 
