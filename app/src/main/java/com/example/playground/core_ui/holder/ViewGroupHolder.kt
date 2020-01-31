@@ -1,7 +1,7 @@
 package com.example.playground.core_ui.holder
 
 import android.view.View
-import android.widget.LinearLayout
+import android.widget.FrameLayout
 import com.example.playground.R
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.items.AbstractItem
@@ -22,16 +22,16 @@ open class ViewGroupHolder : AbstractItem<ViewGroupHolder, ViewGroupHolder.ViewH
     }
 
     class ViewHolder(view: View) : FastAdapter.ViewHolder<ViewGroupHolder>(view) {
-        private val linearLayout by lazy {
-            view.findViewById<LinearLayout>(R.id.linear_layout)
+        private val frameLayout by lazy {
+            view.findViewById<FrameLayout>(R.id.frame_layout)
         }
 
         override fun unbindView(item: ViewGroupHolder) {
-            linearLayout.removeAllViews()
+            frameLayout.removeAllViews()
         }
 
         override fun bindView(item: ViewGroupHolder, payloads: MutableList<Any>) {
-            linearLayout.addView(item.itemView)
+            frameLayout.addView(item.itemView)
         }
 
     }
