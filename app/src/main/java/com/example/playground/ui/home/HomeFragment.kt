@@ -13,7 +13,7 @@ class HomeFragment : CoreFragment() {
             listOf(
                 addButton("List Text 1", action = { goToListText() }),
                 dividerView(),
-                addButton("Menu", action = { addView() }),
+                addButton("Menu", action = { goToListText() }),
                 dividerView()
             )
         )
@@ -38,15 +38,5 @@ class HomeFragment : CoreFragment() {
             val goToListText = HomeFragmentDirections.goToListText()
             Navigation.findNavController(it).navigate(goToListText)
         }
-    }
-
-    private fun addView() {
-        viewList.addAll(
-            listOf(
-                addButton("List Text 100", action = { goToListText() }),
-                dividerView()
-            )
-        )
-        updateView()
     }
 }

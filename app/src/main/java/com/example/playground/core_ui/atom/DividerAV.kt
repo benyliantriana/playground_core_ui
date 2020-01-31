@@ -7,8 +7,10 @@ import com.example.playground.utils.dp
 
 class DividerAV(context: Context) : View(context) {
 
+    var height: Int? = 4
+
     init {
         R.id.av_divider
-        minimumHeight = 4.dp()
+        minimumHeight = height?.dp() ?: 4.dp()
     }
 }

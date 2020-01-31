@@ -4,4 +4,5 @@
     <item name="av_divider" type="id" />
     <item name="mv_menuaccount" type="id" />
     <item name="mv_menuaccount_textlabel" type="id" />
+    <item name="mv_menuaccount_textdata" type="id" />
 </resources>

@@ -1,21 +1,22 @@
 package com.example.playground.core_ui.molecule
 
 import android.content.Context
+import android.view.View
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.content.ContextCompat
 import com.example.playground.R
 import com.example.playground.core_ui.atom.TextViewAV
+import com.example.playground.utils.dp
 
 class MenuAccountMV(context: Context) : ConstrainMV(context) {
 
     var textLabel: String? = null
     var textData: String? = null
 
-    private val constrainLayout = getConstraint()
-
     private val TVLabel = TextViewAV(context).apply {
         id = R.id.mv_menuaccount_textlabel
         text = textLabel
-    }.rootView
+    }
 
     private val TVData = TextViewAV(context).apply {
         text = textData
@@ -27,17 +28,36 @@ class MenuAccountMV(context: Context) : ConstrainMV(context) {
 
     private fun createComponent() {
 
-        constrainLayout.id = R.id.mv_menuaccount
+        id = R.id.mv_menuaccount
         TVLabel.id = R.id.mv_menuaccount_textlabel
+        TVData.id = R.id.mv_menuaccount_textdata
 
-        constrainLayout.addView(TVLabel)
+        setBackgroundColor(ContextCompat.getColor(context, R.color.colorWhite))
+        setPadding(8.dp(), 8.dp(), 8.dp(), 8.dp())
+
+        addView(TVLabel)
+        addView(TVData)
 
         ConstraintSet().also {
-            it.clone(constrainLayout)
-            it.connect(TVLabel.getId(), ConstraintSet.START, constrainLayout.id, ConstraintSet.START)
-            it.applyTo(constrainLayout)
+            it.clone(this)
+
+            it.connect(TVLabel.id, ConstraintSet.START, this.id, ConstraintSet.START)
+            it.connect(TVLabel.id, ConstraintSet.TOP, this.id, ConstraintSet.TOP)
+
+            it.connect(TVData.id, ConstraintSet.END, this.id, ConstraintSet.END)
+            it.connect(TVData.id, ConstraintSet.TOP, this.id, ConstraintSet.TOP)
+
+            it.applyTo(this)
         }
     }
 
-    fun getView() = constrainLayout
+    private fun setData() {
+        TVLabel.text = textLabel
+        TVData.text = textData
+    }
+
+    fun getView(): View {
+        setData()
+        return this
+    }
 }

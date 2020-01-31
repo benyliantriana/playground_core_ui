@@ -2,19 +2,32 @@ package com.example.playground.ui.textlist
 
 import android.view.View
 import com.example.playground.core.CoreFragment
+import com.example.playground.core_ui.atom.DividerAV
 import com.example.playground.core_ui.molecule.MenuAccountMV
 
 class TextListFragment : CoreFragment() {
 
     override fun renderView() {
-        for (i in 1..100) {
-            viewList.add(addTextView1(i))
-        }
+        viewList.add(addTextView1("Tipe Akun", "Full Service"))
+        viewList.add(addTextView1("LinkAja Syariah", "Tidak Aktif"))
+        viewList.add(addTextView1("Metode Pembayaran", ""))
+        viewList.add(addTextView1("LinkAja TAP", "Belum diatur"))
+        viewList.add(dividerView())
+        viewList.add(addTextView1("Tipe Akun", "Full Service"))
+        viewList.add(addTextView1("LinkAja Syariah", "Tidak Aktif"))
+        viewList.add(addTextView1("Metode Pembayaran", ""))
+        viewList.add(addTextView1("LinkAja TAP", "Belum diatur"))
+
     }
 
-    private fun addTextView1(i: Int): View {
+    private fun addTextView1(txtLabel: String, txtData: String): View {
         return MenuAccountMV(requireContext()).apply {
-            textLabel = "textView $i"
+            textLabel = txtLabel
+            textData = txtData
         }.getView()
+    }
+
+    private fun dividerView(): View {
+        return DividerAV(requireContext())
     }
 }
