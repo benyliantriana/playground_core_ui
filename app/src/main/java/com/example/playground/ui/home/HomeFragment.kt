@@ -8,10 +8,12 @@ import com.example.playground.core_ui.atom.DividerAV
 
 class HomeFragment : CoreFragment() {
 
+    var text: String = "Text 1"
+
     override fun renderView() {
         viewList.addAll(
             listOf(
-                addButton("List Text 1", action = { goToListText() }),
+                addButton(text, action = { editText() }),
                 dividerView(),
                 addButton("Menu", action = { goToListText() }),
                 dividerView()
@@ -38,5 +40,10 @@ class HomeFragment : CoreFragment() {
             val goToListText = HomeFragmentDirections.goToListText()
             Navigation.findNavController(it).navigate(goToListText)
         }
+    }
+
+    private fun editText() {
+        text = "Text " + (1..100).random()
+        updateView()
     }
 }

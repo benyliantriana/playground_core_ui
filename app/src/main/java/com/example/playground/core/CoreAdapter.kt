@@ -23,8 +23,4 @@ internal class CoreAdapter(
             itemAdapter.set(index, ViewGroupHolder().addView(view))
         }
     }
-
-    fun addNewData(view: View) {
-        itemAdapter.add(ViewGroupHolder().addView(view))
-    }
 }
