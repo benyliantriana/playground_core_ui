@@ -10,7 +10,9 @@ import com.example.playground.R
 import kotlinx.android.synthetic.main.recycle_view.*
 
 open class CoreFragment : Fragment() {
-    var viewList: ArrayList<View> = arrayListOf()
+    var viewList: ArrayList<Atom<*>> = arrayListOf()
+    var tempViewList: ArrayList<Atom<*>> = arrayListOf()
+
     private lateinit var mAdapter: CoreAdapter
 
     override fun onCreateView(
@@ -44,9 +46,14 @@ open class CoreFragment : Fragment() {
     }
 
     fun updateView() {
+        setTempDataView()
         initDataViewList()
         renderView()
         updateItemAdapter()
+    }
+
+    private fun setTempDataView() {
+        tempViewList = viewList
     }
 
     private fun initDataViewList() {
@@ -54,6 +61,6 @@ open class CoreFragment : Fragment() {
     }
 
     private fun updateItemAdapter() {
-        mAdapter.setNewData(viewList)
+        mAdapter.setNewData(tempViewList)
     }
 }

@@ -1,10 +1,9 @@
 package com.example.playground.ui.home
 
-import android.view.View
 import androidx.navigation.Navigation
+import com.example.playground.core.Atom
 import com.example.playground.core.CoreFragment
 import com.example.playground.core_ui.atom.ButtonAV
-import com.example.playground.core_ui.atom.DividerAV
 
 class HomeFragment : CoreFragment() {
 
@@ -14,9 +13,7 @@ class HomeFragment : CoreFragment() {
         viewList.addAll(
             listOf(
                 addButton(text, action = { editText() }),
-                dividerView(),
-                addButton("Menu", action = { goToListText() }),
-                dividerView()
+                addButton("Menu", action = { goToListText() })
             )
         )
     }
@@ -24,16 +21,18 @@ class HomeFragment : CoreFragment() {
     private fun addButton(
         label: String,
         action: () -> Unit
-    ): View {
+    ): Atom<*> {
         return ButtonAV(requireContext()).apply {
-            text = label
-            onClick = { action() }
+            state?.apply {
+                text = label
+                onClick = { action() }
+            }
         }
     }
 
-    private fun dividerView(): View {
-        return DividerAV(requireContext())
-    }
+//    private fun dividerView(): View {
+//        return DividerAV(requireContext())
+//    }
 
     private fun goToListText() {
         view?.let {
