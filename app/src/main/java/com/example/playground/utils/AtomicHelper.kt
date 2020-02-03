@@ -18,4 +18,15 @@ object AtomicHelper {
                 TextViewAV(context)
         }
     }
+
+    fun getId(kclass: String): Int {
+        return when (kclass) {
+            TextViewAV::class.simpleName ->
+                10
+            ButtonAV::class.simpleName ->
+                11
+            else ->
+                11
+        }
+    }
 }

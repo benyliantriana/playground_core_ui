@@ -9,12 +9,10 @@ import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.items.AbstractItem
 
 
-
-
 open class ViewGroupHolder : AbstractItem<ViewGroupHolder, ViewGroupHolder.ViewHolder>() {
 
     private var dataItem: Any? = null
-    private lateinit var classItemName: String
+    private var classItemName: String = ""
 
     fun withData(data: Any, classItem: String): ViewGroupHolder {
         this.dataItem = data
@@ -22,23 +20,21 @@ open class ViewGroupHolder : AbstractItem<ViewGroupHolder, ViewGroupHolder.ViewH
         return this
     }
 
-    lateinit var atom: Atom
 
     override fun getType(): Int {
-        return -1 // ini aku gk tau harus diisi apa
+        return AtomicHelper.getId(classItemName) // ini aku gk tau harus diisi apa
     }
 
     override fun getViewHolder(v: View): ViewHolder {
-        atom = AtomicHelper.generateInstanceAtom(classItemName, v.context)
-        return ViewHolder(atom.getView())
+        val atomView = AtomicHelper.generateInstanceAtom(classItemName, v.context)
+        return ViewHolder(atomView.getView(), atomView)
     }
 
     override fun getLayoutRes(): Int {
         return R.layout.view_group
     }
 
-    inner class ViewHolder(val view: View) : FastAdapter.ViewHolder<ViewGroupHolder>(view) {
-
+    inner class ViewHolder(val view: View, val atom: Atom) : FastAdapter.ViewHolder<ViewGroupHolder>(view) {
         override fun unbindView(item: ViewGroupHolder) {
            atom.unBind()
         }

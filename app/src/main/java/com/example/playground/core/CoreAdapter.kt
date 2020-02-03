@@ -9,19 +9,13 @@ class CoreAdapter(
     var data: ArrayList<Any>
 ) : FastAdapter<ViewGroupHolder>() {
 
+    val itemAdapter: ItemAdapter<ViewGroupHolder> = ItemAdapter.items()
 
-    fun setData(classItemName: String) {
-        val itemAdapter: ItemAdapter<ViewGroupHolder> = ItemAdapter.items()
-        data.map{
-            itemAdapter.add(ViewGroupHolder().withData(it, classItemName)) //.add(ViewGroupHolder<T>().withData(it))
-        }
-        addAdapter( 0, itemAdapter)
+    fun setData(updateDataItem: Any, classItemName: String) {
+//        data.add(updateDataItem)
+        itemAdapter.add(ViewGroupHolder().withData(updateDataItem, classItemName)) //.add(ViewGroupHolder<T>().withData(it))
+        addAdapter(0, itemAdapter)
     }
 
 
-   /* fun setNewData(data: ArrayList<Any>) {
-        data.mapIndexed { index, view ->
-            itemAdapter.set(index, ViewGroupHolder())
-        }
-    }*/
 }

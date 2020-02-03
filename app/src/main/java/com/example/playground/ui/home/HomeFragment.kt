@@ -1,31 +1,21 @@
 package com.example.playground.ui.home
 
 import android.util.Log
-import android.view.View
 import androidx.navigation.Navigation
-import com.example.playground.core.CoreAdapter
 import com.example.playground.core.CoreFragment
 import com.example.playground.core_ui.atom.ButtonAV
 import com.example.playground.core_ui.atom.DataPassing
-import com.example.playground.core_ui.atom.DividerAV
 import com.example.playground.core_ui.atom.TextViewAV
-import com.example.playground.core_ui.holder.ViewGroupHolder
 
 class HomeFragment : CoreFragment() {
     override fun renderView() {
 
-        viewList.addAll(
-            listOf(
-                DataPassing("sample data list") {
-                    goToListText()
-                },
-                DataPassing("sample data 1") {
-                    goToListText()
-                }
-            )
-        )
 
-       mAdapter.setData(ButtonAV::class.java.simpleName)
+            mAdapter.setData("arief", TextViewAV::class.java.simpleName)
+
+        mAdapter.setData(DataPassing("to fragment list") {
+            goToListText()
+        }, ButtonAV::class.java.simpleName)
 
     }
 
