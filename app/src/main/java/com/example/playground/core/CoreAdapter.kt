@@ -18,8 +18,8 @@ internal class CoreAdapter(
     }
 
     fun setNewData(newData: ArrayList<Atom<*>>) {
-        newData.mapIndexed { index, it ->
-            if (it.getAtomState() != data[index].getAtomState()) {
+        data.mapIndexed { index, it ->
+            if (it.getAtomState() != newData[index].getAtomState()) {
                 itemAdapter.set(index, ViewGroupHolder().addView(it.getView()))
             }
         }
