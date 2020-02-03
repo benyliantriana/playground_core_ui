@@ -10,15 +10,14 @@ import com.example.playground.core_ui.state.TextState
 class HomeFragment : CoreFragment() {
     override fun renderView() {
 
-        for (i in 0..1) {
-            if (i == 0) {
-                mAdapter.setData(ButtonState.Normal("to fragment list") {
-                    goToListText()
-                }, ButtonAV::class.java.simpleName)
-            }else {
-                mAdapter.setData(TextState.Basic("arief"), TextViewAV::class.java.simpleName)
-            }
-        }
+        mAdapter.setData(
+            state = ButtonState.Normal("to fragment list") {
+            goToListText()
+        }, classItemName = ButtonAV::class.java.simpleName)
+
+        mAdapter.setData(
+            state = TextState.Basic("arief"),
+            classItemName = TextViewAV::class.java.simpleName)
 
         mAdapter.reload()
     }

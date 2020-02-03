@@ -9,8 +9,8 @@ class CoreAdapter : FastAdapter<ViewGroupHolder>() {
 
     val itemAdapter: ItemAdapter<ViewGroupHolder> = ItemAdapter.items()
 
-    fun setData(updateDataItem: State, classItemName: String) {
-        itemAdapter.add(ViewGroupHolder().withData(updateDataItem, classItemName)) //.add(ViewGroupHolder<T>().withData(it))
+    fun setData(state: State, classItemName: String) {
+        itemAdapter.add(ViewGroupHolder().withData(state, classItemName))
     }
 
     fun reload() {

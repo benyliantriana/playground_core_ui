@@ -9,12 +9,16 @@ import com.example.playground.core_ui.state.TextState
 class TextListFragment : CoreFragment() {
 
     override fun renderView() {
-        for (i in 1..100) {
+        for (i in 1..1000) {
             if (i % 3 == 0){
-                mAdapter.setData(ButtonState.Normal(addTextView(i), action = fun (){
-                }), ButtonAV::class.java.simpleName)
+                mAdapter.setData(
+                    state = ButtonState.Normal(addTextView(i), action = fun (){
+                }),
+                    classItemName = ButtonAV::class.java.simpleName)
             } else {
-                mAdapter.setData(TextState.Basic(addTextView(i)), TextViewAV::class.java.simpleName)
+                mAdapter.setData(
+                    state = TextState.Basic(addTextView(i)),
+                    classItemName = TextViewAV::class.java.simpleName)
             }
         }
         mAdapter.reload()
