@@ -1,20 +1,24 @@
 package com.example.playground.core_ui.holder
 
+import android.util.Log
 import android.view.View
 import com.example.playground.R
 import com.example.playground.core_ui.atom.Atom
-import com.example.playground.core_ui.atom.ButtonAV
 import com.example.playground.utils.AtomicHelper
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.items.AbstractItem
 
 
-open class ViewGroupHolder<T : Atom> : AbstractItem<ViewGroupHolder<T>, ViewGroupHolder<T>.ViewHolder<T>>() {
+
+
+open class ViewGroupHolder : AbstractItem<ViewGroupHolder, ViewGroupHolder.ViewHolder>() {
 
     private var dataItem: Any? = null
+    private lateinit var classItemName: String
 
-    fun withData(data: Any): ViewGroupHolder<T> {
+    fun withData(data: Any, classItem: String): ViewGroupHolder {
         this.dataItem = data
+        this.classItemName = classItem
         return this
     }
 
@@ -24,9 +28,8 @@ open class ViewGroupHolder<T : Atom> : AbstractItem<ViewGroupHolder<T>, ViewGrou
         return -1 // ini aku gk tau harus diisi apa
     }
 
-    override fun getViewHolder(v: View): ViewHolder<T> {
-        // belum ketemu cara instance object dari generic type
-        atom = AtomicHelper.generateInstanceAtom(T::class.java, v.context)
+    override fun getViewHolder(v: View): ViewHolder {
+        atom = AtomicHelper.generateInstanceAtom(classItemName, v.context)
         return ViewHolder(atom.getView())
     }
 
@@ -34,14 +37,15 @@ open class ViewGroupHolder<T : Atom> : AbstractItem<ViewGroupHolder<T>, ViewGrou
         return R.layout.view_group
     }
 
-    inner class ViewHolder<VH : Atom>(val view: View) : FastAdapter.ViewHolder<ViewGroupHolder<VH>>(view) {
+    inner class ViewHolder(val view: View) : FastAdapter.ViewHolder<ViewGroupHolder>(view) {
 
-        override fun unbindView(item: ViewGroupHolder<VH>) {
+        override fun unbindView(item: ViewGroupHolder) {
            atom.unBind()
         }
 
-        override fun bindView(item: ViewGroupHolder<VH>, payloads: MutableList<Any>) {
-            dataItem?.let {
+        override fun bindView(item: ViewGroupHolder, payloads: MutableList<Any>) {
+            Log.d("AF", "payload ${item.dataItem.toString()}")
+            item.dataItem?.let {
                 atom.render(it)
             }
         }

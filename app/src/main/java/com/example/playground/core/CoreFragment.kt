@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.recycle_view.*
 
 open class CoreFragment : Fragment() {
     var viewList: ArrayList<Any> = arrayListOf()
-     lateinit var mAdapter: CoreAdapter<Atom>
+     lateinit var mAdapter: CoreAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

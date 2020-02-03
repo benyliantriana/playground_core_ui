@@ -9,16 +9,14 @@ import com.example.playground.core_ui.atom.TextViewAV
 class TextListFragment : CoreFragment() {
 
     override fun renderView() {
-        for (i in 1..100) {
-            viewList.add(addTextView1(i))
+        for (i in 1..1000) {
+            viewList.add(addTextView(i))
         }
+
+        mAdapter.setData(TextViewAV::class.java.simpleName)
     }
 
-    private fun addTextView1(i: Int): View {
-        return TextViewAV(requireContext()).getView()/*.apply {
-            id = i
-            text = "textView $i"
-            setTextColor(ContextCompat.getColor(context, R.color.colorWhite))
-        }*/
+    private fun addTextView(i: Int): String {
+        return "textView $i"
     }
 }

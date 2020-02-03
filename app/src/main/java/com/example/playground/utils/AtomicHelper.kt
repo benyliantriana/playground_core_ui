@@ -5,14 +5,14 @@ import android.util.Log
 import com.example.playground.core_ui.atom.Atom
 import com.example.playground.core_ui.atom.ButtonAV
 import com.example.playground.core_ui.atom.TextViewAV
+import java.util.*
 
 object AtomicHelper {
-    fun <T: Atom> generateInstanceAtom(kclass: Class<T>, context: Context): Atom {
-//        Log.d("AF", "name ${element.javaClass.simpleName}")
+    fun generateInstanceAtom(kclass: String, context: Context): Atom {
         return when (kclass) {
-            TextViewAV::class ->
+            TextViewAV::class.simpleName ->
                 TextViewAV(context)
-            ButtonAV::class ->
+            ButtonAV::class.simpleName ->
                 ButtonAV(context)
             else ->
                 TextViewAV(context)

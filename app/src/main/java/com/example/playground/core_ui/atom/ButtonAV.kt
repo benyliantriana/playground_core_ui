@@ -1,6 +1,7 @@
 package com.example.playground.core_ui.atom
 
 import android.content.Context
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import androidx.appcompat.widget.AppCompatButton
@@ -22,7 +23,8 @@ class ButtonAV(context: Context) : Atom() {
             gravity = Gravity.CENTER_HORIZONTAL
             setBackgroundColor(buttonColor)
             setTextColor(defaultTextColor)
-            setOnClickListener { onClick() }
+            Log.d("AF", "click 0 ")
+
         }
     }
 
@@ -32,7 +34,13 @@ class ButtonAV(context: Context) : Atom() {
     }
 
     override fun render(data: Any) {
-        buttonAV.text = data.toString()
+        val dataPassing = data as DataPassing
+        Log.d("AF", "click ${dataPassing.action}")
+        buttonAV.text = dataPassing.data.toString()
+        onClick = dataPassing.action
+        buttonAV.setOnClickListener {
+            dataPassing.action.invoke()
+        }
     }
 
 }

@@ -5,15 +5,15 @@ import com.example.playground.core_ui.holder.ViewGroupHolder
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
 
-class CoreAdapter<T: Atom>(
+class CoreAdapter(
     var data: ArrayList<Any>
-) : FastAdapter<ViewGroupHolder<T>>() {
+) : FastAdapter<ViewGroupHolder>() {
 
 
-    fun setData() {
-        val itemAdapter: ItemAdapter<ViewGroupHolder<T>> = ItemAdapter.items()
+    fun setData(classItemName: String) {
+        val itemAdapter: ItemAdapter<ViewGroupHolder> = ItemAdapter.items()
         data.map{
-            itemAdapter.add(ViewGroupHolder<T>().withData(it)) //.add(ViewGroupHolder<T>().withData(it))
+            itemAdapter.add(ViewGroupHolder().withData(it, classItemName)) //.add(ViewGroupHolder<T>().withData(it))
         }
         addAdapter( 0, itemAdapter)
     }

@@ -29,11 +29,11 @@ class TextViewAV(context: Context) : Atom() {
     override fun getView(): View = textViewAV
 
     override fun unBind() {
-        textViewAV.text = null
+
     }
 
     override fun render(data: Any) {
-        textViewAV.text = data as String
+        textViewAV.text = data.toString()
     }
 
 }
