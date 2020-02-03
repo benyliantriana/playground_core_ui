@@ -26,13 +26,13 @@ open class CoreFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setAdapter()
-        renderRecyclerView()
+       renderRecyclerView()
     }
 
     open fun renderView(){}
 
     open fun setAdapter() {
-        mAdapter = CoreAdapter(viewList)
+        mAdapter = CoreAdapter()
     }
 
     private fun renderRecyclerView() {
@@ -40,8 +40,8 @@ open class CoreFragment : Fragment() {
             layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
             itemAnimator = null
             adapter = mAdapter
-            renderView()
         }
+        renderView()
     }
 
     fun updateView() {

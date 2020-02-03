@@ -2,9 +2,10 @@ package com.example.playground.core_ui.atom
 
 import android.content.Context
 import android.view.View
+import com.example.playground.core_ui.state.State
 import com.example.playground.utils.dp
 
-class DividerAV(context: Context) : Atom() {
+class DividerAV<T: State>(context: Context) : Atom<T>() {
 
     lateinit var divider: View
     init {
@@ -18,6 +19,6 @@ class DividerAV(context: Context) : Atom() {
     override fun unBind() {
     }
 
-    override fun render(data: Any) {
+    override fun render(data: T) {
     }
 }

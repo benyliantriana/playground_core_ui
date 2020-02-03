@@ -6,10 +6,12 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import com.example.playground.R
+import com.example.playground.core_ui.state.State
+import com.example.playground.core_ui.state.TextState
 import com.example.playground.utils.sp
 
 
-class TextViewAV(context: Context) : Atom() {
+class TextViewAV<S: State> (context: Context) : Atom<S>() {
 
     private var color: Int = ContextCompat.getColor(context, R.color.colorAccent)
     private var textViewAV: AppCompatTextView
@@ -32,8 +34,18 @@ class TextViewAV(context: Context) : Atom() {
 
     }
 
-    override fun render(data: Any) {
-        textViewAV.text = data.toString()
+    override fun render(data: S) {
+        if (data is TextState.Basic) {
+            textViewAV.text = data.text
+        }
+    }
+
+    companion object {
+        const val type = 11
     }
 
 }
+
+
+
+

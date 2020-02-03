@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.View
 import com.example.playground.R
 import com.example.playground.core_ui.atom.Atom
+import com.example.playground.core_ui.state.State
 import com.example.playground.utils.AtomicHelper
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.items.AbstractItem
@@ -11,22 +12,21 @@ import com.mikepenz.fastadapter.items.AbstractItem
 
 open class ViewGroupHolder : AbstractItem<ViewGroupHolder, ViewGroupHolder.ViewHolder>() {
 
-    private var dataItem: Any? = null
+    private var dataItem: State? = null
     private var classItemName: String = ""
 
-    fun withData(data: Any, classItem: String): ViewGroupHolder {
+    fun withData(data: State, classItem: String): ViewGroupHolder {
         this.dataItem = data
         this.classItemName = classItem
         return this
     }
 
-
     override fun getType(): Int {
-        return AtomicHelper.getId(classItemName) // ini aku gk tau harus diisi apa
+        return AtomicHelper.getAtomType(classItemName) // ini aku gk tau harus diisi apa
     }
 
     override fun getViewHolder(v: View): ViewHolder {
-        val atomView = AtomicHelper.generateInstanceAtom(classItemName, v.context)
+        val atomView = AtomicHelper.generateInstanceAtom<State>(classItemName, v.context)
         return ViewHolder(atomView.getView(), atomView)
     }
 
@@ -34,7 +34,7 @@ open class ViewGroupHolder : AbstractItem<ViewGroupHolder, ViewGroupHolder.ViewH
         return R.layout.view_group
     }
 
-    inner class ViewHolder(val view: View, val atom: Atom) : FastAdapter.ViewHolder<ViewGroupHolder>(view) {
+    inner class ViewHolder(val view: View, val atom: Atom<State>) : FastAdapter.ViewHolder<ViewGroupHolder>(view) {
         override fun unbindView(item: ViewGroupHolder) {
            atom.unBind()
         }

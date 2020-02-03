@@ -7,9 +7,11 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import com.example.playground.R
+import com.example.playground.core_ui.state.ButtonState
+import com.example.playground.core_ui.state.State
 import com.example.playground.utils.sp
 
-class ButtonAV(context: Context) : Atom() {
+class ButtonAV<T: State>(context: Context) : Atom<T>() {
 
     private var defaultTextColor: Int = ContextCompat.getColor(context, R.color.colorWhite)
     private var buttonColor: Int = ContextCompat.getColor(context, R.color.colorAccent)
@@ -23,8 +25,6 @@ class ButtonAV(context: Context) : Atom() {
             gravity = Gravity.CENTER_HORIZONTAL
             setBackgroundColor(buttonColor)
             setTextColor(defaultTextColor)
-            Log.d("AF", "click 0 ")
-
         }
     }
 
@@ -33,13 +33,13 @@ class ButtonAV(context: Context) : Atom() {
     override fun unBind() {
     }
 
-    override fun render(data: Any) {
-        val dataPassing = data as DataPassing
-        Log.d("AF", "click ${dataPassing.action}")
-        buttonAV.text = dataPassing.data.toString()
-        onClick = dataPassing.action
-        buttonAV.setOnClickListener {
-            dataPassing.action.invoke()
+    override fun render(data: T) {
+        if(data is ButtonState.Normal) {
+            buttonAV.text = data.text
+            onClick = data.action
+            buttonAV.setOnClickListener {
+                data.action.invoke()
+            }
         }
     }
 

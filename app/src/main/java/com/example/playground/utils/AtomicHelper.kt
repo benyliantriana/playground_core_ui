@@ -1,14 +1,13 @@
 package com.example.playground.utils
 
 import android.content.Context
-import android.util.Log
 import com.example.playground.core_ui.atom.Atom
 import com.example.playground.core_ui.atom.ButtonAV
 import com.example.playground.core_ui.atom.TextViewAV
-import java.util.*
+import com.example.playground.core_ui.state.State
 
 object AtomicHelper {
-    fun generateInstanceAtom(kclass: String, context: Context): Atom {
+    fun <T: State> generateInstanceAtom(kclass: String, context: Context): Atom<T> {
         return when (kclass) {
             TextViewAV::class.simpleName ->
                 TextViewAV(context)
@@ -19,14 +18,15 @@ object AtomicHelper {
         }
     }
 
-    fun getId(kclass: String): Int {
+    fun getAtomType(kclass: String): Int {
         return when (kclass) {
             TextViewAV::class.simpleName ->
-                10
-            ButtonAV::class.simpleName ->
-                11
+                TextViewAV.type
+            TextViewAV::class.simpleName ->
+                TextViewAV.type
             else ->
-                11
+                0
         }
     }
+
 }

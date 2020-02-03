@@ -12,12 +12,12 @@ class MenuAccountMV(context: Context) : ConstrainMV(context) {
 
     private val constrainLayout = getConstraint()
 
-    private val TVLabel = TextViewAV(context).apply {
-        id = R.id.av_textview
+//    private val TVLabel = TextViewAV(context).apply {
+//        id = R.id.av_textview
 //        text = textLabel
-    }
+//    }
 
-    private val TVData = TextViewAV(context).apply {
+   /* private val TVData = TextViewAV(context).apply {
 //        text = textData
     }
 
@@ -38,5 +38,5 @@ class MenuAccountMV(context: Context) : ConstrainMV(context) {
         }
     }
 
-    fun getView() = constrainLayout
+    fun getView() = constrainLayout*/
 }
