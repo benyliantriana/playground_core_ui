@@ -22,8 +22,8 @@ object AtomicHelper {
         return when (kclass) {
             TextViewAV::class.simpleName ->
                 TextViewAV.type
-            TextViewAV::class.simpleName ->
-                TextViewAV.type
+            ButtonAV::class.simpleName ->
+                ButtonAV.type
             else ->
                 0
         }

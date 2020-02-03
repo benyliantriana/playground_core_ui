@@ -7,11 +7,8 @@ import com.example.playground.utils.dp
 
 class DividerAV<T: State>(context: Context) : Atom<T>() {
 
-    lateinit var divider: View
-    init {
-        divider = View(context).apply {
-            minimumHeight = 4.dp()
-        }
+    private var divider: View = View(context).apply {
+        minimumHeight = 4.dp()
     }
 
     override fun getView(): View = divider

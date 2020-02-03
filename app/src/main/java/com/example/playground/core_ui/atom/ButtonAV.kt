@@ -18,7 +18,7 @@ class ButtonAV<T: State>(context: Context) : Atom<T>() {
 
     lateinit var onClick: () -> Unit?
 
-    lateinit var buttonAV: AppCompatButton
+    private var buttonAV: AppCompatButton
 
     init {
         buttonAV = AppCompatButton(context).apply {
@@ -41,6 +41,10 @@ class ButtonAV<T: State>(context: Context) : Atom<T>() {
                 data.action.invoke()
             }
         }
+    }
+
+    companion object {
+        const val type = 10
     }
 
 }

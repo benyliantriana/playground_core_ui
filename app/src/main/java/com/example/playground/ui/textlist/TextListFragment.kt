@@ -2,7 +2,6 @@ package com.example.playground.ui.textlist
 
 import com.example.playground.core.CoreFragment
 import com.example.playground.core_ui.atom.ButtonAV
-import com.example.playground.core_ui.atom.DataPassing
 import com.example.playground.core_ui.atom.TextViewAV
 import com.example.playground.core_ui.state.ButtonState
 import com.example.playground.core_ui.state.TextState

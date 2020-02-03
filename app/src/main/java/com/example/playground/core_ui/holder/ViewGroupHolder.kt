@@ -1,6 +1,5 @@
 package com.example.playground.core_ui.holder
 
-import android.util.Log
 import android.view.View
 import com.example.playground.R
 import com.example.playground.core_ui.atom.Atom
@@ -40,7 +39,6 @@ open class ViewGroupHolder : AbstractItem<ViewGroupHolder, ViewGroupHolder.ViewH
         }
 
         override fun bindView(item: ViewGroupHolder, payloads: MutableList<Any>) {
-            Log.d("AF", "payload ${item.dataItem.toString()}")
             item.dataItem?.let {
                 atom.render(it)
             }

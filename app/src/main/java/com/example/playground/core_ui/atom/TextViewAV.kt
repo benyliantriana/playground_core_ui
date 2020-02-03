@@ -24,10 +24,6 @@ class TextViewAV<S: State> (context: Context) : Atom<S>() {
         }
     }
 
-    var id: Int? = R.id.av_textview
-    private val textId
-        get() = id ?: R.id.av_textview
-
     override fun getView(): View = textViewAV
 
     override fun unBind() {
