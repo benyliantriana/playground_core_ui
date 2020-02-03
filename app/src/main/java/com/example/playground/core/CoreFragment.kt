@@ -46,14 +46,14 @@ open class CoreFragment : Fragment() {
     }
 
     fun updateView() {
-        setTempDataView()
+        setTempViewList()
         initDataViewList()
         renderView()
         updateItemAdapter()
     }
 
-    private fun setTempDataView() {
-        tempViewList = viewList
+    private fun setTempViewList() {
+        tempViewList.addAll(viewList)
     }
 
     private fun initDataViewList() {
@@ -62,5 +62,6 @@ open class CoreFragment : Fragment() {
 
     private fun updateItemAdapter() {
         mAdapter.setNewData(tempViewList)
+        tempViewList.clear()
     }
 }

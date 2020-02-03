@@ -12,7 +12,7 @@ class ButtonAV(context: Context) : Atom<ButtonAV.State>() {
 
     private var defaultTextColor: Int = ContextCompat.getColor(context, R.color.colorWhite)
     private var buttonColor: Int = ContextCompat.getColor(context, R.color.colorAccent)
-    var state: State? = null
+    var state: State = State()
 
     private val buttonAV = AppCompatButton(context).apply {
         id = R.id.av_button
@@ -22,10 +22,9 @@ class ButtonAV(context: Context) : Atom<ButtonAV.State>() {
         setTextColor(defaultTextColor)
     }
 
-    override fun getView(): View = buttonAV.apply {
-        state?.let {
-            render(it)
-        }
+    override fun getView(): View {
+        render(state)
+        return buttonAV
     }
 
     override fun unBind() {

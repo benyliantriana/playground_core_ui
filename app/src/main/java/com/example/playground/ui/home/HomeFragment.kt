@@ -23,7 +23,7 @@ class HomeFragment : CoreFragment() {
         action: () -> Unit
     ): Atom<*> {
         return ButtonAV(requireContext()).apply {
-            state?.apply {
+            state.apply {
                 text = label
                 onClick = { action() }
             }
