@@ -10,7 +10,9 @@ import com.example.playground.R
 import kotlinx.android.synthetic.main.recycle_view.*
 
 open class CoreFragment : Fragment() {
-    var viewList: ArrayList<View> = arrayListOf()
+    var viewList = arrayListOf<Atom<*>>()
+    var tempViewList: ArrayList<Atom<*>> = arrayListOf()
+
     private lateinit var mAdapter: CoreAdapter
 
     override fun onCreateView(
@@ -39,23 +41,27 @@ open class CoreFragment : Fragment() {
             layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
             itemAnimator = null
             adapter = mAdapter
+            setItemViewCacheSize(20)
         }
     }
 
     fun updateView() {
+        setTempViewList()
         initDataViewList()
         renderView()
-        updateAdapter()
+        updateItemAdapter()
+    }
+
+    private fun setTempViewList() {
+        tempViewList.addAll(viewList)
     }
 
     private fun initDataViewList() {
         viewList.clear()
     }
 
-    private fun updateAdapter() {
-        mAdapter.apply {
-            setNewData(viewList)
-        }
+    private fun updateItemAdapter() {
+        mAdapter.setNewData(tempViewList)
+        tempViewList.clear()
     }
-
 }
