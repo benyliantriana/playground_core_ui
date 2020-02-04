@@ -14,8 +14,7 @@ class ButtonAV(context: Context) : Atom<ButtonAV.State>() {
     private var buttonColor: Int = ContextCompat.getColor(context, R.color.colorAccent)
     var state: State = State()
 
-    private val buttonAV = AppCompatButton(context).apply {
-        id = R.id.av_button
+    val buttonView = AppCompatButton(context).apply {
         textSize = 14f
         gravity = Gravity.CENTER_HORIZONTAL
         setBackgroundColor(buttonColor)
@@ -24,15 +23,15 @@ class ButtonAV(context: Context) : Atom<ButtonAV.State>() {
 
     override fun getView(): View {
         render(state)
-        return buttonAV
+        return buttonView
     }
 
     override fun unBind() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        state = State()
     }
 
     override fun render(state: State) {
-        buttonAV.apply {
+        buttonView.apply {
             text = state.text
             setOnClickListener { state.onClick() }
         }

@@ -5,59 +5,67 @@ import android.view.View
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import com.example.playground.R
+import com.example.playground.core.Atom
 import com.example.playground.core_ui.atom.TextViewAV
 import com.example.playground.utils.dp
 
-class MenuAccountMV(context: Context) : ConstrainMV(context) {
+class MenuAccountMV(context: Context) : Atom<MenuAccountMV.State>() {
 
-    var textLabel: String? = null
-    var textData: String? = null
+    var state: State = State()
+    private val constraint = ConstrainMV(context)
+    private val labelAV = TextViewAV(context)
+    private val dataAV = TextViewAV(context)
 
-    private val TVLabel = TextViewAV(context).apply {
-        id = R.id.mv_menuaccount_textlabel
-        text = textLabel
-    }
+    override fun render(state: State) {
 
-    private val TVData = TextViewAV(context).apply {
-        text = textData
-    }
+        labelAV.apply {
+            this.state.apply { text = state.textLabel }
+        }
 
-    init {
-        createComponent()
-    }
+        dataAV.apply {
+            this.state.apply { text = state.textData }
+        }
 
-    private fun createComponent() {
+        constraint.apply {
+            id = R.id.mv_menuaccount
+            labelAV.textView.id = R.id.mv_menuaccount_textlabel
+            dataAV.textView.id = R.id.mv_menuaccount_textdata
 
-        id = R.id.mv_menuaccount
-        TVLabel.id = R.id.mv_menuaccount_textlabel
-        TVData.id = R.id.mv_menuaccount_textdata
+            setBackgroundColor(ContextCompat.getColor(context, R.color.colorWhite))
+            setPadding(8.dp(), 8.dp(), 8.dp(), 8.dp())
 
-        setBackgroundColor(ContextCompat.getColor(context, R.color.colorWhite))
-        setPadding(8.dp(), 8.dp(), 8.dp(), 8.dp())
-
-        addView(TVLabel)
-        addView(TVData)
+            addView(labelAV.getView())
+            addView(dataAV.getView())
+        }
 
         ConstraintSet().also {
-            it.clone(this)
+            it.clone(constraint)
 
-            it.connect(TVLabel.id, ConstraintSet.START, this.id, ConstraintSet.START)
-            it.connect(TVLabel.id, ConstraintSet.TOP, this.id, ConstraintSet.TOP)
+            it.connect(labelAV.textView.id, ConstraintSet.START, constraint.id, ConstraintSet.START)
+            it.connect(labelAV.textView.id, ConstraintSet.TOP, constraint.id, ConstraintSet.TOP)
 
-            it.connect(TVData.id, ConstraintSet.END, this.id, ConstraintSet.END)
-            it.connect(TVData.id, ConstraintSet.TOP, this.id, ConstraintSet.TOP)
+            it.connect(dataAV.textView.id, ConstraintSet.END, constraint.id, ConstraintSet.END)
+            it.connect(dataAV.textView.id, ConstraintSet.TOP, constraint.id, ConstraintSet.TOP)
 
-            it.applyTo(this)
+            it.setMargin(constraint.id, ConstraintSet.BOTTOM, 100.dp())
+
+            it.applyTo(constraint)
         }
     }
 
-    private fun setData() {
-        TVLabel.text = textLabel
-        TVData.text = textData
+    override fun getView(): View {
+        render(state)
+        return constraint
     }
 
-    fun getView(): View {
-        setData()
-        return this
+    override fun unBind() {
+        state = State()
+    }
+
+    override fun getAtomState(): State? = state
+
+    class State {
+        var textLabel: String? = null
+        var textData: String? = null
     }
 }
