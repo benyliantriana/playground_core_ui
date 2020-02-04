@@ -5,4 +5,5 @@
     <item name="mv_menuaccount" type="id" />
     <item name="mv_menuaccount_textlabel" type="id" />
     <item name="mv_menuaccount_textdata" type="id" />
+    <item name="mv_menuaccount_image" type="id" />
 </resources>

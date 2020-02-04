@@ -2,36 +2,43 @@ package com.example.playground.core_ui.atom
 
 import android.content.Context
 import android.view.View
-import android.widget.FrameLayout
+import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import com.example.playground.core.Atom
 
 class ImageAV(context: Context) : Atom<ImageAV.State>() {
 
-    private var state: State = State()
+    var state: State = State()
 
-    private var imageView = AppCompatImageView(context).apply {
-        layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT)
-    }
+    var imageView = AppCompatImageView(context)
 
     override fun getView(): View {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        render(state)
+        return imageView
     }
 
     override fun unBind() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        state = State()
     }
 
-    override fun render(state: ImageAV.State) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun render(state: State) {
+        val param = ViewGroup.LayoutParams(state.width, state.height)
+        imageView.apply {
+            state.imagePath?.let {
+                setImageResource(it)
+            }
+            layoutParams = param
+        }
     }
 
-    override fun getAtomState(): ImageAV.State? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getAtomState(): State? {
+        return state
     }
 
     class State {
         var imagePath: Int? = null
+        var width: Int = 0
+        var height: Int = 0
     }
 
 }
