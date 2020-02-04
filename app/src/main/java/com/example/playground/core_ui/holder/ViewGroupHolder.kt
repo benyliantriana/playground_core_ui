@@ -4,7 +4,6 @@ import android.view.View
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.FrameLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.playground.R
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.items.AbstractItem
@@ -26,7 +25,7 @@ open class ViewGroupHolder : AbstractItem<ViewGroupHolder, ViewGroupHolder.ViewH
 
     class ViewHolder(view: View) : FastAdapter.ViewHolder<ViewGroupHolder>(view) {
         private val constraint by lazy {
-            view.findViewById<ConstraintLayout>(R.id.constraint_layout)
+            view.findViewById<FrameLayout>(R.id.frame_layout)
         }
 
         override fun unbindView(item: ViewGroupHolder) {

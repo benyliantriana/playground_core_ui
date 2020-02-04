@@ -9,15 +9,12 @@ import com.example.playground.R
 import com.example.playground.core.Atom
 
 
-class TextViewAV(context: Context) : Atom<TextViewAV.State>() {
+open class TextViewAV(context: Context) : Atom<TextViewAV.State>() {
 
-    private var color: Int = ContextCompat.getColor(context, R.color.colorBlack)
-    var state: State = State()
+    open var state: State = State()
 
     val textView = AppCompatTextView(context).apply {
-        textSize = 14f
         gravity = Gravity.CENTER_HORIZONTAL
-        setTextColor(color)
     }
 
     override fun getView(): View {
@@ -32,6 +29,8 @@ class TextViewAV(context: Context) : Atom<TextViewAV.State>() {
     override fun render(state: State) {
         textView.apply {
             text = state.text
+            textSize = state.textSize
+            setTextColor(ContextCompat.getColor(context, state.color))
         }
     }
 
@@ -39,6 +38,8 @@ class TextViewAV(context: Context) : Atom<TextViewAV.State>() {
 
     class State {
         var text: String? = null
+        var color: Int = R.color.colorBlack
+        var textSize: Float = 14f
     }
 
 }

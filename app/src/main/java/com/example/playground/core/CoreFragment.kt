@@ -10,7 +10,7 @@ import com.example.playground.R
 import kotlinx.android.synthetic.main.recycle_view.*
 
 open class CoreFragment : Fragment() {
-    var viewList: ArrayList<Atom<*>> = arrayListOf()
+    var viewList = arrayListOf<Atom<*>>()
     var tempViewList: ArrayList<Atom<*>> = arrayListOf()
 
     private lateinit var mAdapter: CoreAdapter

@@ -8,15 +8,17 @@ import com.example.playground.core_ui.molecule.MenuAccountMV
 class TextListFragment : CoreFragment() {
 
     override fun renderView() {
-        viewList.add(addTextView1("Tipe Akun", "Full Service"))
-        viewList.add(addTextView1("LinkAja Syariah", "Tidak Aktif"))
-        viewList.add(addTextView1("Metode Pembayaran", ""))
-        viewList.add(addTextView1("LinkAja TAP", "Belum diatur"))
-        viewList.add(dividerView())
-        viewList.add(addTextView1("Tipe Akun", "Full Service"))
-        viewList.add(addTextView1("LinkAja Syariah", "Tidak Aktif"))
-        viewList.add(addTextView1("Metode Pembayaran", ""))
-        viewList.add(addTextView1("LinkAja TAP", "Belum diatur"))
+        viewList.apply {
+            add(addTextView1("Tipe Akun", "Full Service"))
+            add(addTextView1("LinkAja Syariah", "Tidak Aktif"))
+            add(addTextView1("Metode Pembayaran", ""))
+            add(addTextView1("LinkAja TAP", "Belum diatur"))
+            add(dividerView())
+            add(addTextView1("Tipe Akun", "Full Service"))
+            add(addTextView1("LinkAja Syariah", "Tidak Aktif"))
+            add(addTextView1("Metode Pembayaran", ""))
+            add(addTextView1("LinkAja TAP", "Belum diatur"))
+        }
     }
 
     private fun addTextView1(txtLabel: String, txtData: String): Atom<*> {
