@@ -7,7 +7,7 @@ import com.example.playground.core_ui.atom.ButtonAV
 
 class HomeFragment : CoreFragment() {
 
-    var text: String = "Text 1"
+    var text: String = "Test Random Number 1"
 
     override fun renderView() {
         viewList.addAll(
@@ -42,7 +42,7 @@ class HomeFragment : CoreFragment() {
     }
 
     private fun editText() {
-        text = "Text " + (1..100).random()
+        text = "Test Random Number " + (1..100).random()
         updateView()
     }
 }
