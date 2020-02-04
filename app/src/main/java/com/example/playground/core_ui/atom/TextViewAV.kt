@@ -31,7 +31,7 @@ class TextViewAV<S: State> (context: Context) : Atom<S>() {
     }
 
     override fun render(data: S) {
-        if (data is TextState.Basic) {
+        if (data is TextState) {
             textViewAV.text = data.text
         }
     }

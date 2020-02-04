@@ -6,8 +6,18 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.playground.core_ui.atom.Atom
+import com.example.playground.core_ui.state.State
 
-open class ConstrainMV(context: Context) : View(context) {
+open class ConstrainMV<T: State>(context: Context) : Atom<T>() {
+
+    override fun getView(): View = constraintLayout
+
+    override fun unBind() {
+    }
+
+    override fun render(data: T) {
+    }
 
     private val constraintLayout = ConstraintLayout(context)
 
@@ -20,5 +30,4 @@ open class ConstrainMV(context: Context) : View(context) {
         }
     }
 
-    fun getConstraint() = constraintLayout
 }

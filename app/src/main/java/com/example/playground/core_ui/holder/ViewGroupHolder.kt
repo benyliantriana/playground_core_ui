@@ -12,7 +12,7 @@ import com.mikepenz.fastadapter.items.AbstractItem
 
 open class ViewGroupHolder : AbstractItem<ViewGroupHolder, ViewGroupHolder.ViewHolder>() {
 
-    private var dataItem: State = TextState.Basic("")
+    private var dataItem: State = TextState("")
 
     fun withData(data: State): ViewGroupHolder {
         this.dataItem = data

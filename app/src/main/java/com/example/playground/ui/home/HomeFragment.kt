@@ -4,7 +4,9 @@ import androidx.navigation.Navigation
 import com.example.playground.core.CoreFragment
 import com.example.playground.core_ui.atom.ButtonAV
 import com.example.playground.core_ui.atom.TextViewAV
+import com.example.playground.core_ui.molecule.MenuAccountMV
 import com.example.playground.core_ui.state.ButtonState
+import com.example.playground.core_ui.state.MenuAccountState
 import com.example.playground.core_ui.state.TextState
 
 class HomeFragment : CoreFragment() {
@@ -12,7 +14,7 @@ class HomeFragment : CoreFragment() {
 
        val data = arrayListOf (
            ButtonState.Normal("to fragment list") { goToListText() },
-           TextState.Basic("arief")
+           MenuAccountState.Normal("arief", "maffrudin") { goToListText() }
        )
         coreAdapter.dispatch(data)
     }
