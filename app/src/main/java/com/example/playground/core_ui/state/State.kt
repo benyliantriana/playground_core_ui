@@ -13,3 +13,7 @@ object Empty: State()
 sealed class MenuAccountState: State() {
     data class Normal(val left: String, val right: String, val action: ()-> Unit?): MenuAccountState()
 }
+
+sealed class ImageState: State() {
+    data class Icon(val resId: Int) : ImageState()
+}

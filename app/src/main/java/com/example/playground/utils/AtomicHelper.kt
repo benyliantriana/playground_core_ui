@@ -30,14 +30,14 @@ object AtomicHelper {
         return when (state) {
             is TextState->
                 TextViewAV.type
+
             is ButtonState ->
                 ButtonAV.type
 
             is MenuAccountState ->
                 MenuAccountMV.type
 
-            else ->
-                0
+            else -> 0
 
         }
     }

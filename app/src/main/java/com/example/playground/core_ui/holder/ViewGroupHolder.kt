@@ -20,7 +20,7 @@ open class ViewGroupHolder : AbstractItem<ViewGroupHolder, ViewGroupHolder.ViewH
     }
 
     override fun getType(): Int {
-        return AtomicHelper.getAtomType(dataItem) // ini aku gk tau harus diisi apa
+        return AtomicHelper.getAtomType(dataItem)
     }
 
     override fun getViewHolder(v: View): ViewHolder {
@@ -38,7 +38,7 @@ open class ViewGroupHolder : AbstractItem<ViewGroupHolder, ViewGroupHolder.ViewH
         }
 
         override fun bindView(item: ViewGroupHolder, payloads: MutableList<Any>) {
-            item.dataItem?.apply {
+            item.dataItem.apply {
                 atom.render(this)
             }
         }

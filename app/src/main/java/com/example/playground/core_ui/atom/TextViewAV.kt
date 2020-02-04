@@ -11,16 +11,23 @@ import com.example.playground.core_ui.state.TextState
 import com.example.playground.utils.sp
 
 
-class TextViewAV<S: State> (context: Context) : Atom<S>() {
+class TextViewAV<S: State> (context: Context, style: Style = Subhead) : Atom<S>() {
 
-    private var color: Int = ContextCompat.getColor(context, R.color.colorAccent)
+    private var textPrimary: Int = ContextCompat.getColor(context, R.color.text_primary)
+    private var textSecondary: Int = ContextCompat.getColor(context, R.color.text_secondary)
     private var textViewAV: AppCompatTextView
+
     init {
       textViewAV =  AppCompatTextView(context).apply {
-            id = id
-            textSize = 14f
-            gravity = Gravity.CENTER_HORIZONTAL
-            setTextColor(color)
+          id = id
+          if (style == Title) {
+              textSize = 14f
+              setTextColor(textPrimary)
+          } else if (style == Subhead) {
+              textSize = 12f
+              setTextColor(textSecondary)
+          }
+          gravity = Gravity.CENTER
         }
     }
 
@@ -29,6 +36,7 @@ class TextViewAV<S: State> (context: Context) : Atom<S>() {
     override fun unBind() {
 
     }
+
 
     override fun render(data: S) {
         if (data is TextState) {
@@ -41,6 +49,11 @@ class TextViewAV<S: State> (context: Context) : Atom<S>() {
     }
 
 }
+
+sealed class Style
+object Title : Style()
+object Subhead : Style()
+object Caption : Style()
 
 
 
