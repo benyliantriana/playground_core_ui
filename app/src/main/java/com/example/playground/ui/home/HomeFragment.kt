@@ -10,16 +10,11 @@ import com.example.playground.core_ui.state.TextState
 class HomeFragment : CoreFragment() {
     override fun renderView() {
 
-        mAdapter.setData(
-            state = ButtonState.Normal("to fragment list") {
-            goToListText()
-        }, classItemName = ButtonAV::class.java.simpleName)
-
-        mAdapter.setData(
-            state = TextState.Basic("arief"),
-            classItemName = TextViewAV::class.java.simpleName)
-
-        mAdapter.reload()
+       val data = arrayListOf (
+           ButtonState.Normal("to fragment list") { goToListText() },
+           TextState.Basic("arief")
+       )
+        coreAdapter.dispatch(data)
     }
 
     private fun goToListText() {

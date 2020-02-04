@@ -4,24 +4,22 @@ import com.example.playground.core.CoreFragment
 import com.example.playground.core_ui.atom.ButtonAV
 import com.example.playground.core_ui.atom.TextViewAV
 import com.example.playground.core_ui.state.ButtonState
+import com.example.playground.core_ui.state.State
 import com.example.playground.core_ui.state.TextState
 
 class TextListFragment : CoreFragment() {
 
     override fun renderView() {
+        var data = arrayListOf<State>()
         for (i in 1..1000) {
             if (i % 3 == 0){
-                mAdapter.setData(
-                    state = ButtonState.Normal(addTextView(i), action = fun (){
-                }),
-                    classItemName = ButtonAV::class.java.simpleName)
+                data.add(ButtonState.Normal(addTextView(i), action = fun (){}))
+
             } else {
-                mAdapter.setData(
-                    state = TextState.Basic(addTextView(i)),
-                    classItemName = TextViewAV::class.java.simpleName)
+               data.add(TextState.Basic(addTextView(i)))
             }
         }
-        mAdapter.reload()
+        coreAdapter.dispatch(data)
     }
 
     private fun addTextView(i: Int): String {

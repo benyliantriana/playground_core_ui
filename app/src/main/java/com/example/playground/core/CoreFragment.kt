@@ -10,11 +10,12 @@ import com.example.playground.R
 import com.example.playground.core_ui.atom.Atom
 import com.example.playground.core_ui.atom.ButtonAV
 import com.example.playground.core_ui.atom.TextViewAV
+import com.example.playground.core_ui.state.State
 import kotlinx.android.synthetic.main.recycle_view.*
 
 open class CoreFragment : Fragment() {
-    var viewList: ArrayList<Any> = arrayListOf()
-     lateinit var mAdapter: CoreAdapter
+    var dataState: ArrayList<State> = arrayListOf()
+     lateinit var coreAdapter: CoreAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,14 +33,14 @@ open class CoreFragment : Fragment() {
     open fun renderView(){}
 
     open fun setAdapter() {
-        mAdapter = CoreAdapter()
+        coreAdapter = CoreAdapter(dataState)
     }
 
     private fun renderRecyclerView() {
         recyclew_view?.apply {
             layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
             itemAnimator = null
-            adapter = mAdapter
+            adapter = coreAdapter
         }
         renderView()
     }
@@ -51,11 +52,11 @@ open class CoreFragment : Fragment() {
     }
 
     private fun initDataViewList() {
-        viewList.clear()
+        dataState.clear()
     }
 
     private fun updateAdapter() {
-        mAdapter.apply {
+        coreAdapter.apply {
             //setNewData(viewList)
         }
     }

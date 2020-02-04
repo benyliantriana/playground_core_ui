@@ -4,28 +4,30 @@ import android.content.Context
 import com.example.playground.core_ui.atom.Atom
 import com.example.playground.core_ui.atom.ButtonAV
 import com.example.playground.core_ui.atom.TextViewAV
+import com.example.playground.core_ui.state.ButtonState
 import com.example.playground.core_ui.state.State
+import com.example.playground.core_ui.state.TextState
 
 object AtomicHelper {
-    fun <T: State> generateInstanceAtom(kClass: String, context: Context): Atom<T> {
-        return when (kClass) {
-            TextViewAV::class.simpleName ->
+    fun <T: State> generateInstanceAtom(state: State, context: Context): Atom<T> {
+        return when (state) {
+            is TextState ->
                 TextViewAV(context)
-            ButtonAV::class.simpleName ->
+            is ButtonState ->
                 ButtonAV(context)
-            else ->
-                TextViewAV(context)
+            else -> TextViewAV(context)
         }
     }
 
-    fun getAtomType(kclass: String): Int {
-        return when (kclass) {
-            TextViewAV::class.simpleName ->
+    fun getAtomType(state: State): Int {
+        return when (state) {
+            is TextState->
                 TextViewAV.type
-            ButtonAV::class.simpleName ->
+            is ButtonState ->
                 ButtonAV.type
             else ->
                 0
+
         }
     }
 

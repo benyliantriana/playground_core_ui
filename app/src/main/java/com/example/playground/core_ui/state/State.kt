@@ -9,3 +9,5 @@ sealed class TextState : State() {
 sealed class ButtonState: State() {
     data class Normal(val text: String, val action: () -> Unit?): ButtonState()
 }
+
+object Empty: State()

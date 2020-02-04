@@ -4,6 +4,7 @@ import android.view.View
 import com.example.playground.R
 import com.example.playground.core_ui.atom.Atom
 import com.example.playground.core_ui.state.State
+import com.example.playground.core_ui.state.TextState
 import com.example.playground.utils.AtomicHelper
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.items.AbstractItem
@@ -11,21 +12,19 @@ import com.mikepenz.fastadapter.items.AbstractItem
 
 open class ViewGroupHolder : AbstractItem<ViewGroupHolder, ViewGroupHolder.ViewHolder>() {
 
-    private var dataItem: State? = null
-    private var classItemName: String = ""
+    private var dataItem: State = TextState.Basic("")
 
-    fun withData(data: State, classItem: String): ViewGroupHolder {
+    fun withData(data: State): ViewGroupHolder {
         this.dataItem = data
-        this.classItemName = classItem
         return this
     }
 
     override fun getType(): Int {
-        return AtomicHelper.getAtomType(classItemName) // ini aku gk tau harus diisi apa
+        return AtomicHelper.getAtomType(dataItem) // ini aku gk tau harus diisi apa
     }
 
     override fun getViewHolder(v: View): ViewHolder {
-        val atomView = AtomicHelper.generateInstanceAtom<State>(classItemName, v.context)
+        val atomView = AtomicHelper.generateInstanceAtom<State>(dataItem, v.context)
         return ViewHolder(atomView.getView(), atomView)
     }
 
@@ -39,8 +38,8 @@ open class ViewGroupHolder : AbstractItem<ViewGroupHolder, ViewGroupHolder.ViewH
         }
 
         override fun bindView(item: ViewGroupHolder, payloads: MutableList<Any>) {
-            item.dataItem?.let {
-                atom.render(it)
+            item.dataItem?.apply {
+                atom.render(this)
             }
         }
 
